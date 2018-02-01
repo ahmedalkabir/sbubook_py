@@ -1,10 +1,201 @@
+<!--
+    Designed and Coded by : Ahmed Alkabir
+-->
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html dir="rtl">
+    {% block head %}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>المكتبة الإلكترونية</title>
+
+
+        <link rel="stylesheet" href="../static/css/uikit.min.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+        <link rel="stylesheet" href="../static/css/default.css">
+        <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+    </head>
+    {% endblock %}
+    <body id="bkg">
+
+        <div class="uk-container uk-container-large box">
+            <div class="logo">
+                <img src="../static/img/logo.png">
+            </div>
+        </div>
+        <nav class="uk-navbar-container" uk-navbar="mode: click" >
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav menu">
+                    <li class="uk-parent"><a href="{{ url_for('main.index') }}">الرئيسية</a></li>
+                    <li>
+                        <a href="">أقسام المواد</a>
+                        <div class="uk-navbar-dropdown">
+                             <ul class="uk-nav uk-navbar-dropdown-nav">
+                                 {% for depart in departs %}
+                                 <li><a href="{{ url_for('.view_departments_subjects',depart_=depart.code_department) }}">{{ depart.name_department }}</a>
+                                     {% endfor %}
+                             </ul>
+                        </div>
+                    </li>
+                    <li><a href="{{ url_for('main.blogs') }}">المدونة</a></li>
+                </ul>
+            </div>
+
+             <div class="uk-navbar-left menu">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-parent about"><button class="uk-button uk-button-primary"><a href=""></a>حول المشروع</button></li>
+                </ul>
+            </div>
+
+            <div class="uk-navbar-container menu-toggle" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-slide" href=""></a>
+                </div>
+            </div>
+        </nav>
+        <!-- side nav -->
+                <div id="offcanvas-slide" uk-offcanvas="flip:true">
+                    <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-text-center">
+
+                        <button class="uk-offcanvas-close uk-close-large" type="button" uk-close></button>
+
+                        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
+                            <li class="uk-active"><a href="#">الرئيسية</a></li>
+                            <li class="uk-parent">
+                                <a href="#">أقسام المواد</a>
+                                <ul class="uk-nav-sub">
+                                    {% for depart in departs %}
+                                    <li><a href="{{url_for('.view_departments_subjects',depart_=depart.code_department)}}">{{ depart.name_department }}</a>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div>
+                            <div class="uk-grid-small uk-child-width-auto uk-flex-inline" uk-grid>
+                                <div>
+                                    <a class="uk-icon-button" href="#" uk-icon="icon: facebook"></a>
+                                </div>
+                                <div>
+                                    <a class="uk-icon-button" href="#" uk-icon="icon: twitter"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        {% block purpose_of_project%}
+        <div class="uk-container uk-container-large info-project">
+            <div class="uk-grid-medium uk-child-width-expand@s uk-text-center grid-ak " uk-grid>
+                <div class="uk-card uk-card-default uk-card-body card-ak">
+                    <i class="fa fa-book fa-5x"><h1>المكتبة الإلكترونية</h1></i>
+                    <h4>مشروع المكتبة الإلكترونية حيث يستهدف طلبة كليات الهندسة بالمجمل
+                        و نحاول أن نوفر أغلب المراجع الهندسية لطلبةالكليات الهندسية
+                        والتقنية في محاولة تقليل من الجهد الطالب عن البحث عن المراجع </h4>
+                </div>
+
+                <div class="uk-card uk-card-default uk-card-body card-ak">
+                    <i class="fa fa-pencil fa-5x"><h1>المدونة الطالب</h1></i>
+                    <h4>لا يقف المشروع عند المكتبة بل أيضا نحاول نشر مقالات التي ترتبط بالطالب
+                         في محاولة لمساعدة
+                         الطالب في مشواره العلمي</h4>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block container %}
+        <div class="uk-container uk-container-large last-blogs">
+            <div class="uk-grid-match uk-grid-small" uk-grid>
+                <div class="uk-width-3-5@m uk-width-2-3@l">
+                    <div class="uk-card uk-card-default uk-card-body card-ak">
+                        <h2 class="last-blogs-title"><span>أخر مادون</span></h2>
+                        {% block last_articles %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="uk-width-1-5@m uk-width-1-3@l uk-width-expand">
+                    <div class="uk-card uk-card-default uk-padding uk-card-body card-ak">
+                        <h2 class="last-blogs-title"><span>أخر الكتب المضافة</span></h2>
+                        <div class="uk-grid-small uk-child-width-expand@s uk-grid">
+                            {% block last_books %}
+                            <div class="last-book items">
+                                <article class="article-item uk-margin-top">
+                                    <a href="" class="blog-item">
+                                        <div class="uk-first-column">
+                                            <a href=""><h1 class="title-blog uk-text-center">Numerical Methods With Matlab Applications</h1></a>
+                                            <span class="uk-text-right uk-text-meta">القسم : </span>
+                                            <span class="uk-text-right uk-text-meta uk-margin-left">الكهربائية والإتصاللات</span>
+                                            <span class="uk-text-right uk-text-meta uk-margin-right">تاريخ الإضافة :</span>
+                                            <span class="uk-text-right uk-text-meta">1/2/2001</span>
+                                        </div>
+                                    </a>
+                                </article>
+                                <article class="article-item uk-margin-top">
+                                    <a href="" class="blog-item">
+                                        <div class="uk-first-column">
+                                            <a href=""><h1 class="title-blog uk-text-center">Digital Design Morris Mano 5th Edition</h1></a>
+                                            <span class="uk-text-right uk-text-meta">القسم : </span>
+                                            <span class="uk-text-right uk-text-meta uk-margin-left">الكهربائية والإتصاللات</span>
+                                            <span class="uk-text-right uk-text-meta uk-margin-right">تاريخ الإضافة :</span>
+                                            <span class="uk-text-right uk-text-meta">1/2/2001</span>
+                                        </div>
+                                    </a>
+                                </article>
+                                <article class="article-item uk-margin-top">
+                                    <a href="" class="blog-item">
+                                        <div class="uk-first-column">
+                                            <a href=""><h1 class="title-blog uk-text-center">Digital Systems Principles and Applications</h1></a>
+                                            <span class="uk-text-right uk-text-meta">القسم : </span>
+                                            <span class="uk-text-right uk-text-meta uk-margin-left">الكهربائية والإتصاللات</span>
+                                            <span class="uk-text-right uk-text-meta uk-margin-right">تاريخ الإضافة :</span>
+                                            <span class="uk-text-right uk-text-meta">1/2/2001</span>
+                                        </div>
+                                    </a>
+                                </article>
+                            </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="uk-card uk-card-default uk-padding uk-card-body card-ak">
+                        <h2 class="last-blogs-title"><span>تابعنا</span></h2>
+                        <div class="uk-grid-small uk-child-width-expand@s uk-grid">
+                            <iframe class="uk-margin" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBETA-GROUP-1239063602774641%2F&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                                width="500" height="500"
+                                style="border:none;overflow:hidden"
+                                scrolling="no" frameborder="0"
+                                allowTransparency="true"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        <footer class="uk-container uk-container-large footer">
+            <div class="uk-child-width-expand@s uk-text-center uk-margin-top grid-ak-footer" uk-grid>
+                <div>
+                    <h4 class="last-blogs-title"><span>مواقع صديقة</span></h4>
+                    <ul class="uk-list">
+                        <li>جامعة صبراته</li>
+                        <li>وازرة التعليم العالي</li>
+                    </ul>
+                </div>
+                <div>
+                    <img class="uk-align-center logo-footer" src="../static/img/logo_footer.png">
+                    <span class="logo-title-sbu">جامعة صبراته</span>
+                </div>
+                <div>
+                    <h4 class="last-blogs-title"><span>القائم علي المشرع</span></h4>
+                    <span class="span-font uk-text-large uk-text-center"> مشروع تطوعي من تنفيذ طلبة كلية الهندسة - جامعة صبراته </span>
+                </div>
+            </div>
+        </footer>
+        <script src="../static/js/jquery-3.2.1.min.js"></script>
+        <script src="../static/js/uikit.min.js"></script>
+        <script src="../static/js/main.js"></script>
+        <script src="../static/js/uikit-icons.min.js"></script>
+    </body>
+
 </html>

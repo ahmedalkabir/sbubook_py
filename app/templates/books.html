@@ -5,30 +5,6 @@
     <link rel="stylesheet" href="../static/css/post.css">
 {% endblock %}
 
-{% block navbar %}
-    <div class="uk-navbar-dropdown">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
-            {% for depart in departs %}
-            <li><a href="{{ url_for('.view_departments_subjects',depart_=depart.code_department) }}">{{ depart.name_department }}</a>
-            {% endfor %}
-        </ul>
-    </div>
-{% endblock %}
-
-{% block side_navbar %}
-<ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
-    <li class="uk-active"><a href="#">الرئيسية</a></li>
-    <li class="uk-parent">
-        <a href="#">أقسام المواد</a>
-        <ul class="uk-nav-sub">
-            {% for depart in departs %}
-            <li><a href="url_for('.view_departments_subjects',depart_=depart.code_department)">{{ depart.name_department }}</a>
-            {% endfor %}
-        </ul>
-    </li>
-</ul>
-{% endblock %}
-
 {% block purpose_of_project%}
 {% endblock %}
 
@@ -44,19 +20,19 @@
                 <table class="uk-table uk-table-striped uk-table-hover">
                     <thead>
                         <tr>
-                            <th>رمز المادة</th>
-                            <th>اسم المادة</th>
-                            <th>الوحدات</th>
-                            <th>المتطلبات</th>
+                            <th>أسم الكتاب</th>
+                            <th>نوع الكتاب</th>
+                            <th>حجم الكتاب</th>
+                            <th>رابط التحميل</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {% for subject in subjects %}
+                    {% for book in books %}
                         <tr>
-                            <td><a href="{{ url_for('.view_books_of_subject', sub = subject.code_subject) }}">{{ subject.code_subject }}</a></td>
-                            <td><a href="{{ url_for('.view_books_of_subject', sub = subject.code_subject) }}">{{ subject.name_subject }}</a></td>
-                            <td>{{ subject.units_subject }}</td>
-                            <td>{{ subject.prerequisites }}</td>
+                            <td>{{ book.name_book }}</td>
+                            <td>{{ book.type_of_book }}</td>
+                            <td>{{ book.size_of_book }}</td>
+                            <td><a href="{{book.url_of_book}}">التحميل</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
