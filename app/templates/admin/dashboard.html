@@ -1,83 +1,21 @@
 {% extends "base.html" %}
 
-{% block last_books %}
-<div class="last-book items">
-    {% for last_book in last_books %}
-    <article class="article-item uk-margin-top">
-        <a href="" class="blog-item">
-            <div class="uk-first-column">
-                <a href="{{ last_book.url_of_book }}"><h1 class="title-blog uk-text-center">{{ last_book.name_book }}</h1></a>
-            </div>
-        </a>
-    </article>
-    {% endfor %}
-</div>
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="../static/css/post.css">
 {% endblock %}
 
-{% block last_articles %}
-<div class="list-articles">
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details ">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
+{% block purpose_of_project%}
+{% endblock %}
 
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
-
-
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
-
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
-
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <ul class="uk-pagination uk-flex-center" uk-margin>
-            <li><a href="#"><span uk-pagination-previous></span></a></li>
-            <li class="uk-active"><span>1</span></li>
-            <li class="uk-disabled"><span>...</span></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#"><span uk-pagination-next></span></a></li>
-        </ul>
+{% block container %}
+<div class="uk-container uk-container-expand list-book">
+    <div class="uk-section uk-section-secondary uk-light">
+        <div class="uk-container">
+            <button class="uk-button uk-button-secondary uk-width-1-1">إدارة الأقسام</button>
+            <button class="uk-button uk-button-secondary uk-width-1-1">إدارة المواد</button>
+            <button class="uk-button uk-button-secondary uk-width-1-1">إدارة الكتب</button>
+        </div>
     </div>
 </div>
 {% endblock %}

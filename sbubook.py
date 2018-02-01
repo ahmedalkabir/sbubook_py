@@ -10,4 +10,5 @@ migrate = Migrate(app, db)
 def deploy():
     """Run deployment tasks."""
     # migrate the database
+    print('start deploying')
     upgrade()

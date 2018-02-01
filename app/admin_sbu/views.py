@@ -13,14 +13,18 @@ def login():
     if form.is_submitted():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
-            print('{}-{}'.format(form.email.data, form.password.data))
             login_user(user, form.remember_me.data)
-            return redirect('/dashboard')
+            next = request.args.get('next')
+            if next is None or not next.startswith('/'):
+                next = url_for('admin.dashboard')
+            return redirect(next)
         flash('Invalid email or passwrod.')
-    else:
-        print('Error Validator')
     return render_template('admin/login.html', form=form)
 
+
+@admin.route('/dashboard')
+def dashboard():
+    return render_template('admin/dashboard.html')
 
 @login_manager.user_loader
 def load_user(user_id):

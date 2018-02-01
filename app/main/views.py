@@ -42,7 +42,7 @@ def get_department_lists():
 
 # to get subject list by department
 def get_subjects_lists_by_department(department='GS'):
-    return Subjects.query.filter_by(code_department=department).all()
+    return Subjects.query.filter_by(code_department=department).order_by(Subjects.id).all()
 
 
 # to get books by its subject

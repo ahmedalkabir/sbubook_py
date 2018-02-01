@@ -18,7 +18,7 @@ def create_app(config_name):
     # app.config['SQLALCHEMY_DATABASE_URI'] =\
     #     'postgresql://federer:test2011@localhost:3333/tennis'
     # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    # app.config['SECRET_KEY'] = 'hello_nigga_from_the_other_word'
+    # app.config['SECRET_KEY'] = 'hello_nigga_from_the_other_world'
     # app.config['SSL_REDIRECT'] = True
 
     app.config.from_object(config[config_name])
