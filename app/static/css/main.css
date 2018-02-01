@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Amiri&subset=arabic');
+/* .logo-section{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border: 10px;
+}
+
+.logo{
+    margin : 10px 10px 0 10px;
+} */
+
+/* body#bkg{
+    background-color: #ecf0f1;
+}  */
+
+.box{
+    /*background-image: url("../img/bk.jpg");*/
+    background-color: #ecf0f1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 100%;
+}
+
+li.uk-parent.about{
+    padding-left: 10px;
+}
+
+.menu-toggle{
+    display: none;
+}
+
+@media screen and (max-width: 600px){
+    .menu{
+        display: none;
+    }
+    .menu-toggle{
+        display: initial;
+        background-color: #F8F8F8 ;
+        margin-left: auto !important;
+    }
+}
+
+.info-project{
+    max-width: 100%;
+    text-align: center;
+    color: black !important;
+    background-color: #1B1C1D;
+}
+
+h4{
+    margin-top: 0;
+}
+
+h1 ,h2 ,h3 ,h4{
+    font-family: 'Amiri', serif;
+}
+
+.last-blogs{
+    max-width: 100%;
+    background-color: #ecf0f1;
+}
+
+.img-blog{
+    float: right;
+    display: inline-block; 
+}
+
+a.blog-item > h1{
+    text-decoration: none;
+}
+
+.title-blog{
+    font-size: 2.3em;
+}
+
+.title-blog:hover{
+    color:#1578b0;
+}
+
+.entry-details{
+    color:black;
+    font-size: 1.2em;
+}
+
+.author{
+    text-align: right;
+    color: silver;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+h2.last-blogs-title{
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+h2.last-blogs-title:before{
+    border-top: 2px solid #dfdfdf;
+    content:"";
+    margin: 0 auto; /* this centers the line to the full width specified */
+    position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+    top: 50%; left: 0; right: 0; bottom: 0;
+    width: 95%;
+    z-index: -1;
+}
+
+h2.last-blogs-title span { 
+    /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+    background: #fff; 
+    padding: 0 15px; 
+}
+
+h4.last-blogs-title{
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+h4.last-blogs-title:before{
+    border-top: 2px solid #dfdfdf;
+    content:"";
+    margin: 0 auto; /* this centers the line to the full width specified */
+    position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+    top: 50%; left: 0; right: 0; bottom: 0;
+    width: 95%;
+    z-index: -1;
+}
+
+h4.last-blogs-title span { 
+    /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+    color: white;
+    background: #323436; 
+    padding: 0 15px; 
+}
+
+
+.article-item{
+    border-bottom:2px solid #eee ;
+}
+
+.footer{
+    text-align: center;
+    max-width: 100%;
+    /* color: white !important; */
+    background-color: #323436;
+    padding-bottom: 10px; 
+}
+
+.logo-footer{
+    max-width: 150px;
+}
+
+.logo-title-sbu{
+    font-size: 1.5em;
+    font-family: 'Amiri', serif;
+}
+
+.span-font{
+     font-family: 'Amiri', serif;
+}
+
+/* .logo{
+    margin: 30px 50px 30px 50px;
+} */
+
+
+/* override section */
+.grid-ak{
+    margin-left: 0px !important;
+}
+
+.card-ak{
+    margin: 10px 0px 10px 0px !important;
+}
+
+.grid-ak-footer{
+    margin-left: 0px !important;
+    margin-right: 30px !important;
+}

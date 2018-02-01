@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="../../static/css/post.css">
+{% endblock %}
+
+{% block purpose_of_project %}
+{% endblock %}
+
+{% block container %}
+<div class="uk-section uk-section-muted uk-margin-bottom">
+    <div class="uk-container">
+        <form class=" uk-text-left" action="{{url_for('main.index')}}" method="post">
+            <fieldset class="uk-fieldset">
+                <div class="uk-margin">
+                    {{form.email(class='uk-input uk-text-left')}}
+                </div>
+                <div class="uk-margin">
+                    {{form.password(class='uk-input uk-text-left')}}
+                </div>
+                {{form.submit(class='uk-button uk-button-default uk-width-1-1')}}
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

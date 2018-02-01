@@ -1,0 +1,80 @@
+.paralex_cover{
+    filter: sepia(0%);
+    box-sizing: border-box;
+    min-height: calc(100vh - 316px);
+    background-repeat: no-repeat;
+    background-size: 1640px 1093px;
+    height: calc(100vh - 316px);
+}
+
+h1.uk-heading-hero.uk-margin-auto.uk-margin-auto-vertical {
+    font-size: 2.6em;
+}
+
+@media screen and (max-width: 800px){
+    h1.uk-heading-hero.uk-margin-auto.uk-margin-auto-vertical {
+        text-align: center;
+        font-size: 2.1em;
+    }
+}
+
+.author-img{
+    float: right;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+.author-img img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.author-info a{
+    color:#929292;
+    font-family: 'Amiri', serif;
+}
+
+.header-meta-data{
+    display: block;
+    padding-bottom: 25px;
+    border-bottom:2px solid rgba(8, 7, 7, 0.23);
+}
+
+.header-meta-data h1{
+    font-size: 2.1em;
+}
+
+.card-ak{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.author-info time .fa{
+    margin-left: 10px;
+}
+
+.uk-text-lead{
+    font-family: 'Amiri', serif;
+}
+
+.list-book{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+th{
+    text-align: center !important;
+}
+
+td{
+    text-align: center;
+}
+
+td a:hover{
+    color: #0f7ae5 !important;
+}
+
+.post-section{
+    padding-top: 0;
+    padding-bottom: 0;
+}
