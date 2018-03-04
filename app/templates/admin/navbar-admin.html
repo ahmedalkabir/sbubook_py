@@ -2,16 +2,6 @@
     <div class="uk-navbar-right">
         <ul class="uk-navbar-nav menu">
             <li class="uk-parent"><a href="{{ url_for('main.index') }}">الرئيسية</a></li>
-            <li>
-                <a href="">أقسام المواد</a>
-                <div class="uk-navbar-dropdown">
-                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                         {% for depart in departs %}
-                         <li><a href="{{ url_for('.view_departments_subjects',depart_=depart.code_department) }}">{{ depart.name_department }}</a>
-                             {% endfor %}
-                     </ul>
-                </div>
-            </li>
             <li><a href="{{ url_for('main.blogs') }}">المدونة</a></li>
         </ul>
     </div>
@@ -36,14 +26,6 @@
 
             <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
                  <li class="uk-active"><a href="#">الرئيسية</a></li>
-                <li class="uk-parent">
-                    <a href="#">أقسام المواد</a>
-                    <ul class="uk-nav-sub">
-                        {% for depart in departs %}
-                        <li><a href="{{url_for('.view_departments_subjects',depart_=depart.code_department)}}">{{ depart.name_department }}</a>
-                        {% endfor %}
-                    </ul>
-                </li>
             </ul>
 
             <div>

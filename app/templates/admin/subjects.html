@@ -1,0 +1,89 @@
+{% extends "admin/base.html" %}
+
+{% block container %}
+<div class="uk-section uk-section-secondary">
+    <div class="uk-container">
+        <ul uk-tab>
+            <li class="uk-active"><a href="#">أضف مادة</a></li>
+            <li><a href="#">حذف مادة</a></li>
+            <li><a href="#">تعديل المادة</a></li>
+        </ul>
+
+
+        <ul class="uk-switcher uk-margin">
+            <li>
+                <fieldset class="uk-fieldset">
+
+                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
+                        <a class="uk-alert-close" uk-close></a>
+                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
+                    </div>
+
+                    <legend class="uk-legend">تحديد القسم لإضافة المادة</legend>
+                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                        {% for depart in departs %}
+                            <label><input class="uk-radio uk-margin-left" type="radio"  id="deleteSubject" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                        {% endfor %}
+                    </div>
+
+                    <div id="editList">
+                        <div class="uk-margin">
+                            <input name="code" id="code" class="uk-input" rows="5" placeholder="كود المادة">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="name" id="name" class="uk-input" rows="5" placeholder="أسم المادة">
+                        </div>
+                        
+                        <div class="uk-margin">
+                                <input name="units" id="units" class="uk-input" rows="5" placeholder="عدد الوحدات المادة">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="prereq" id="prereq" class="uk-input" rows="5" placeholder="المتطلبات المادة">
+                        </div>
+                    </div>
+                    <button class="uk-button uk-button-primary uk-width-1-1" id="addSubject">إضف المادة</button>
+                </fieldset>
+            </li>
+
+
+            <li>
+                <fieldset class="uk-fieldset">
+
+                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
+                        <a class="uk-alert-close" uk-close></a>
+                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
+                    </div>
+
+                    <legend class="uk-legend">تحديد القسم المناسب</legend>
+                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                        {% for depart in departs %}
+                            <label><input class="uk-radio uk-margin-left" type="radio"  id="deleteSubject" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                        {% endfor %}
+                    </div>
+
+                    <legend class="uk-legend uk-margin-top">تحديد المواد للحذف</legend>
+
+                    <div class="uk-section">
+                        <div id="DeleteTable" class="uk-container">
+                            <table class="uk-table uk-table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>كود المادة</th>
+                                        <th>أسم المادة</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </li>
+        </ul>
+
+    </div>
+</div>
+{% endblock %}

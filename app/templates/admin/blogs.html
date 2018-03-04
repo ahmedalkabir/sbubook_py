@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% block container %}
+<div class="uk-container uk-container-expand list-book">
+    <div class="uk-section uk-section-secondary uk-light">
+        <div class="uk-container sbu-paddign">
+            <a href="{{ url_for('admin.departments') }}"><button id="btn_departments" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة الأقسام</button></a>
+            <button id="btn_subjects" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة المواد</button>
+            <button id="btn_books" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة الكتب</button>
+            <button id="btn_blogs" class="uk-button uk-button-secondary uk-width-1-1">إدارة المدونة</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

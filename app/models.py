@@ -14,6 +14,15 @@ class Departments(db.Model):
     def __repr__(self):
         return '<Department {}>'.format(self.name_department)
 
+    @property
+    def serialize(self):
+        """ Return object data in serializeable format """
+        return {
+            'id': self.id,
+            'code_department': self.code_department,
+            'name_department': self.name_department        
+        } 
+
 
 class Subjects(db.Model):
     __tablename__ = 'Subjects'
