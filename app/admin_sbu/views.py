@@ -23,7 +23,7 @@ def login():
             if next is None or not next.startswith('/'):
                 next = url_for('admin.dashboard')
             return redirect(next)
-        flash('خطأ في كلمة السر أو البريد الإلكتروني .')
+        flash('خطأ في كلمة السر أو البريد الإلكتروني')
     return render_template('admin/login.html', form=form)
 
 @admin.route('/dashboard')
