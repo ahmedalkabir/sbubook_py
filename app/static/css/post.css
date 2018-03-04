@@ -82,3 +82,8 @@ td a:hover{
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.uk-container.sbu-paddign{
+    padding-left: 20%;
+    padding-right: 20%;
+}
