@@ -8,7 +8,8 @@ from config import config
 db = SQLAlchemy()
 
 login_manager = LoginManager()
-login_manager.login_view = 'admin_sbu.login'
+login_manager.login_view = 'admin.login'
+login_manager.login_message = 'الرجاء التسجيل الدخول أولًا'
 
 def create_app(config_name):
     app = Flask(__name__)
