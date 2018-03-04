@@ -9,5 +9,5 @@ class LoginForm(FlaskForm):
                         render_kw={'placeholder': 'Enter Your Email'})
     password = PasswordField('Password', validators=[DataRequired()],
                              render_kw={'placeholder': 'Enter Your password'})
-    remember_me = BooleanField('Keep me logged in')
+    remember_me = BooleanField('Kep me logged in')
     submit = SubmitField('Log In')
