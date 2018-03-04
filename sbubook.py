@@ -2,7 +2,8 @@ import click
 from app import create_app, db
 from flask_migrate import Migrate, upgrade
 
-app = create_app('heroku')
+# TODO: don't forget to change it to heroku for deployment 
+app = create_app('development')
 migrate = Migrate(app, db)
 
 
