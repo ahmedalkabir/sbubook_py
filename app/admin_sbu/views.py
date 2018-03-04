@@ -15,7 +15,7 @@ def refer_to_login():
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if form.is_submitted():
+    if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
@@ -23,7 +23,7 @@ def login():
             if next is None or not next.startswith('/'):
                 next = url_for('admin.dashboard')
             return redirect(next)
-        flash('Invalid email or passwrod.')
+        flash('خطأ في كلمة السر أو البريد الإلكتروني')
     return render_template('admin/login.html', form=form)
 
 @admin.route('/dashboard')

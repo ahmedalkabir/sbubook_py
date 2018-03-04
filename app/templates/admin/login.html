@@ -51,16 +51,43 @@
 {% block container %}
 <div class="uk-section uk-section-muted uk-margin-bottom">
     <div class="uk-container">
-        <form class=" uk-text-left" method="post">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form class=" uk-text-left" action="/admin_sbu/login" method="post">
+            {{ form.csrf_token }}
             <fieldset class="uk-fieldset">
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                    <div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>{{ error }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
                 <div class="uk-margin">
                     {{form.email(class='uk-input uk-text-left')}}
                 </div>
+                {% if form.email.errors %}
+                    {% for error in form.password.errors %}
+                    <div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>{{ error }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
                 <div class="uk-margin">
                     {{form.password(class='uk-input uk-text-left')}}
                 </div>
                 <div class="uk-margin">
-                    <p class="uk-margin"> Remember Me{{form.remember_me(class='uk-checkbox')}}</p>
+                    <!-- <p class="uk-margin"> Remember Me{{form.remember_me(class='uk-checkbox')}}</p> -->
                 </div>
                 {{form.submit(class='uk-button uk-button-default uk-width-1-1')}}
             </fieldset>
