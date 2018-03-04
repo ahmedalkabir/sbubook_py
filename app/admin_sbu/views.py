@@ -7,6 +7,11 @@ from ..models import User
 from .forms import LoginForm
 
 
+# in case someone get access to /admin_sbu
+@admin.route('/', methods=['GET'])
+def refer_to_login():
+    return redirect(url_for('admin.login'))
+
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -20,7 +25,6 @@ def login():
             return redirect(next)
         flash('Invalid email or passwrod.')
     return render_template('admin/login.html', form=form)
-
 
 @admin.route('/dashboard')
 def dashboard():

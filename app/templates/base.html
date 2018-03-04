@@ -24,6 +24,7 @@
                 <img src="../static/img/logo.png">
             </div>
         </div>
+        {% block navbar %}
         <nav class="uk-navbar-container" uk-navbar="mode: click" >
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav menu">
@@ -55,37 +56,38 @@
             </div>
         </nav>
         <!-- side nav -->
-                <div id="offcanvas-slide" uk-offcanvas="flip:true">
-                    <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-text-center">
+        <div id="offcanvas-slide" uk-offcanvas="flip:true">
+            <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-text-center">
 
-                        <button class="uk-offcanvas-close uk-close-large" type="button" uk-close></button>
+                <button class="uk-offcanvas-close uk-close-large" type="button" uk-close></button>
 
-                        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
-                            <li class="uk-active"><a href="#">الرئيسية</a></li>
-                            <li class="uk-parent">
-                                <a href="#">أقسام المواد</a>
-                                <ul class="uk-nav-sub">
-                                    {% for depart in departs %}
-                                    <li><a href="{{url_for('.view_departments_subjects',depart_=depart.code_department)}}">{{ depart.name_department }}</a>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        </ul>
+                    <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
+                         <li class="uk-active"><a href="#">الرئيسية</a></li>
+                        <li class="uk-parent">
+                            <a href="#">أقسام المواد</a>
+                            <ul class="uk-nav-sub">
+                                {% for depart in departs %}
+                                <li><a href="{{url_for('.view_departments_subjects',depart_=depart.code_department)}}">{{ depart.name_department }}</a>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
 
-                        <div>
-                            <div class="uk-grid-small uk-child-width-auto uk-flex-inline" uk-grid>
-                                <div>
-                                    <a class="uk-icon-button" href="#" uk-icon="icon: facebook"></a>
-                                </div>
-                                <div>
-                                    <a class="uk-icon-button" href="#" uk-icon="icon: twitter"></a>
-                                </div>
+                    <div>
+                        <div class="uk-grid-small uk-child-width-auto uk-flex-inline" uk-grid>
+                            <div>
+                                <a class="uk-icon-button" href="#" uk-icon="icon: facebook"></a>
                             </div>
-                        </div>
-
+                            <div>
+                                <a class="uk-icon-button" href="#" uk-icon="icon: twitter"></a>
+                            </div>
+                         </div>
                     </div>
-                </div>
 
+                </div>
+            </div>
+        </div>
+        {% endblock %}
         {% block purpose_of_project%}
         <div class="uk-container uk-container-large info-project">
             <div class="uk-grid-medium uk-child-width-expand@s uk-text-center grid-ak " uk-grid>
