@@ -28,6 +28,7 @@ def login():
 
 @admin.route('/dashboard')
 def dashboard():
+    print("H")
     return render_template('admin/dashboard.html')
 
 @login_manager.user_loader
