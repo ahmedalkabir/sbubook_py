@@ -37,6 +37,18 @@ class Subjects(db.Model):
     def __repr__(self):
         return '<Subject {}>'.format(self.name_subjects)
 
+    @property
+    def serialize(self):
+        """ Return object data in serializeable format """
+        return {
+            'id': self.id,
+            'code_subject': self.code_subject,
+            'name_subject': self.name_subject,
+            'units_subject': self.units_subject,
+            'prerequisites': self.prerequisites,
+            'code_department': self.code_department
+        }
+
 
 class Books(db.Model):
     __tablename__ = 'Books'

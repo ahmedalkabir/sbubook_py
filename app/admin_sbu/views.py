@@ -10,10 +10,12 @@ from .controller import ManagerController
 # global variables 
 manager = ManagerController()
 
+
 # in case someone get access to /admin_sbu
 @admin.route('/', methods=['GET'])
 def refer_to_login():
     return redirect(url_for('admin.login'))
+
 
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,19 +38,29 @@ def login():
         flash('خطأ في كلمة السر أو البريد الإلكتروني .')
     return render_template('admin/login.html', form=form)
 
+
 @admin.route('/dashboard')
 # @login_required
 def dashboard():
     return render_template('admin/dashboard.html')
 
+
 """
     TODO: clean some stuffs 
     TODO: make methods of ManagerController returns True or Flase to indicate the status of success of process 
-    """
+"""
+
+
 @admin.route('/departments')
 @admin.route('/departments/<requests>', methods=['GET', 'POST'])
 # @login_required
 def departments(requests=None):
+    """
+    it simply we received the json data based on request
+    let's say we send POST Request to http://127.0.0.1:5000/admin_sbu/departments/edit_department
+    which hold Request Payload like this {"id":"1","code":"GS","name":"قسم العام"} we send it to function based the end_point
+    request to manager object's methods
+    """
     if requests is not None and requests in ('get_departments', 'add_department', 'edit_department', 'delete_department'):
         if requests == 'get_departments':
             return manager.get_departments(bjson=True)
@@ -61,21 +73,46 @@ def departments(requests=None):
     elif requests is None:
         return render_template('admin/departments.html')
 
+
 @admin.route('/subjects')
-@admin.route('/subjects/<sbj>')
+@admin.route('/subjects/<requests>', methods=['GET', 'POST'])
 # @login_required
-def subjects(sbj=None):
-    return render_template('admin/subjects.html', departs=manager.get_departments())
+def subjects(requests=None):
+    if requests is not None and requests in ('get_subjects', 'add_subject', 'edit_subject', 'delete_subject'):
+        if requests == 'get_subjects':
+            return manager.get_subjects(request.get_json()['departmentSubject'], bjson=True)
+        elif requests == 'add_subject':
+            return manager.add_subject(request.get_json())
+        elif requests == 'delete_subject':
+            return manager.delete_subject(request.get_json())
+        elif requests == 'edit_subject':
+            return manager.edit_subject(request.get_json())
+    elif requests is None:
+        return render_template('admin/subjects.html', departs=manager.get_departments())
+
 
 @admin.route('/books')
+@admin.route('/books/<requests>', methods=['GET', 'POST'])
 # @login_required
-def books():
-    return render_template('admin/books.html')
+def books(requests=None):
+    if requests is not None and requests in ('get_books', 'add_book', 'edit_book', 'delete_book'):
+        if requests == 'get_books':
+            return manager.get_subjects(request.get_json()['code_subject'], bjson=True)
+        elif requests == 'add_book':
+            return manager.add_subject(request.get_json())
+        elif requests == 'delete_book':
+            return manager.delete_subject(request.get_json())
+        elif requests == 'edit_book':
+            return manager.edit_subject(request.get_json())
+    elif requests is None:
+        return render_template('admin/books.html', departs=manager.get_departments())
+
 
 @admin.route('/blogs')
 # @login_required
 def blogs():
     return render_template('admin/blogs.html')
+
 
 @login_manager.user_loader
 def load_user(user_id):

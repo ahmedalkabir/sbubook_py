@@ -32,9 +32,12 @@
             makeRequest('departments/edit_department',JSON.stringify(data), () => {
                 if(httpRequest.readyState === XMLHttpRequest.DONE){
                     if(httpRequest.status === 200){
+                        let json_data = JSON.parse(httpRequest.responseText);
                         edit[0].value = "";
                         edit[1].value = "";
-                        console.log("Done");
+
+                        console.log(json_data);
+                        alert('Successfully added');
                     }
                 }
             });
@@ -65,10 +68,10 @@
         makeRequest('departments/get_departments','',() => {
             if(httpRequest.readyState === XMLHttpRequest.DONE){
                 if(httpRequest.status === 200){
-                    var encoded_json_data = JSON.parse(httpRequest.responseText);
+                    let encoded_json_data = JSON.parse(httpRequest.responseText);
                     for(let i=0;i < encoded_json_data.length; i++){
                         
-                        var OptEl = document.createElement('option');
+                        let OptEl = document.createElement('option');
                         OptEl.className = "addBook";
                         OptEl.value = encoded_json_data[i].id;
                         OptEl.innerText = encoded_json_data[i].name_department;

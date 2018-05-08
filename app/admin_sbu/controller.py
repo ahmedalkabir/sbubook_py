@@ -18,14 +18,20 @@ class ManagerController:
     def add_department(self, json_data):
         depart = Departments(code_department=json_data['code'], name_department=json_data['name'])
         db.session.add(depart)
-        db.session.commit()
-        return 'TEST'
+        try:
+            db.session.commit()
+            return json.dumps({'status': True, 'messages': 'تم إضافة القسم بنجاح'})
+        except Exception as ex:
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
     
     def delete_department(self, json_data):
         depart = Departments.query.filter_by(code_department=json_data['code']).first()
         db.session.delete(depart)
-        db.session.commit()
-        return 'TEST DELETE'
+        try:
+            db.session.commit()
+            return json.dumps({'status': True, 'messages': 'تم الحذف بنجاح'})
+        except Exception as ex:
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
 
     def edit_department(self, json_data):
         depart = Departments.query.get(json_data['id'])
@@ -33,6 +39,48 @@ class ManagerController:
         depart.name_department = json_data['name']
         try:
             db.session.commit()
-            return 'تم التعديل بنجاح'
+            return json.dumps({'status': True, 'messages': 'تم التعديل بنجاح'})
         except Exception as ex:
-           return 'Error: {}'.format(ex)
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
+
+    # section for subjects
+    def get_subjects(self, department_of_subject, bjson: bool = False):
+        if bjson:
+            return jsonify(
+                [subject.serialize for subject in
+                 Subjects.query.filter_by(code_department=department_of_subject).order_by(Subjects.id).all()])
+        else:
+            Subjects.query.filter_by(code_department=department_of_subject).order_by(Subjects.id).all()
+
+    def add_subject(self, json_data):
+        subject = Subjects(code_subject=json_data['code_subject'], name_subject=json_data['name_subject'],
+                           units_subject=json_data['units_subject'], prerequisites=json_data['prerequisites'],
+                           code_department=json_data['code_department'])
+        db.session.add(subject)
+        try:
+            db.session.commit()
+            return json.dumps({'status': True, 'messages': 'تم إضافة المادة بنجاح'})
+        except Exception as ex:
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
+
+    def delete_subject(self, json_data):
+        subject = Subjects.query.filter_by(code_subject=json_data['code_subject']).first()
+        db.session.delete(subject)
+        try:
+            db.session.commit()
+            return json.dumps({'status': True, 'messages': 'تم الحذف بنجاح'})
+        except Exception as ex:
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
+
+    def edit_subject(self, json_data):
+        print(json_data)
+        subject = Subjects.query.get(json_data['id'])
+        subject.code_subject = json_data['code_subject']
+        subject.name_subject = json_data['name_subject']
+        subject.units_subject = json_data['units_subject']
+        subject.prerequisites = json_data['prerequisties']
+        try:
+            db.session.commit()
+            return json.dumps({'status': True, 'messages': 'تم التعديل بنجاح'})
+        except Exception as ex:
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})

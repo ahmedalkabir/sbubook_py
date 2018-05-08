@@ -1,14 +1,143 @@
 {% extends "admin/base.html" %}
 
 {% block container %}
-<div class="uk-container uk-container-expand list-book">
-    <div class="uk-section uk-section-secondary uk-light">
-        <div class="uk-container sbu-paddign">
-            <a href="{{ url_for('admin.departments') }}"><button id="btn_departments" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة الأقسام</button></a>
-            <button id="btn_subjects" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة المواد</button>
-            <button id="btn_books" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة الكتب</button>
-            <button id="btn_blogs" class="uk-button uk-button-secondary uk-width-1-1">إدارة المدونة</button>
-        </div>
+<div class="uk-section uk-section-secondary">
+    <div class="uk-container">
+        <ul uk-tab>
+            <li class="uk-active"><a href="#">اضف الكتاب</a></li>
+            <li><a href="#">حذف الكتاب</a></li>
+            <li><a href="#">تعديل الكتاب</a></li>
+        </ul>
+
+
+        <ul class="uk-switcher uk-margin">
+            <li>
+                <fieldset class="uk-fieldset">
+
+                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
+                        <a class="uk-alert-close" uk-close></a>
+                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
+                    </div>
+
+                    <legend class="uk-legend">تحديد القسم والمادة لإضافة الكتاب المرتبط بيه</legend>
+                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                        {% for depart in departs %}
+                            <label><input class="uk-radio uk-margin-left" type="radio" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                        {% endfor %}
+                    </div>
+
+                    <div id="addList">
+                        <div class="uk-margin">
+                            <input name="code" id="code" class="uk-input" rows="5" placeholder="أسم الكتاب">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="name" id="name" class="uk-input" rows="5" placeholder="نوع الكتاب">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="units" id="units" class="uk-input" rows="5" placeholder="حجم الكتاب">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="prereq" id="prereq" class="uk-input" rows="5" placeholder="رابط التحميل">
+                        </div>
+                    </div>
+                    <button class="uk-button uk-button-primary uk-width-1-1" id="addSubject">إضف الكتاب</button>
+                </fieldset>
+            </li>
+
+
+            <li>
+                <fieldset class="uk-fieldset">
+
+                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
+                        <a class="uk-alert-close" uk-close></a>
+                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
+                    </div>
+
+                    <legend class="uk-legend">تحديد القسم المناسب</legend>
+                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                        {% for depart in departs %}
+                            <label><input class="uk-radio uk-margin-left" type="radio"  id="deleteSubject" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                        {% endfor %}
+                    </div>
+
+                    <legend class="uk-legend uk-margin-top">تحديد المواد للحذف</legend>
+
+                    <div class="uk-section">
+                        <div id="DeleteTable" class="uk-container">
+                            <table class="uk-table uk-table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>كود المادة</th>
+                                        <th>أسم المادة</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </li>
+
+            <li>
+                <fieldset class="uk-fieldset">
+
+                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
+                        <a class="uk-alert-close" uk-close></a>
+                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
+                    </div>
+
+                    <legend class="uk-legend">تحديد القسم المناسب</legend>
+                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                        {% for depart in departs %}
+                            <label><input class="uk-radio uk-margin-left" type="radio"  id="editSubject" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                        {% endfor %}
+                    </div>
+
+                    <legend class="uk-legend uk-margin-top">تحديد المادة للتعديل</legend>
+                    <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
+
+                        <select id="subjectSelector">
+                            <option value="0">أختار</option>
+                        </select>
+
+                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                            <span></span>
+                            <span uk-icon="icon: chevron-down"></span>
+                        </button>
+                    </div>
+
+                    <div class="uk-margin-top" id="editList">
+                        <div class="uk-margin">
+                            <input name="code" id="code" class="uk-input edit" rows="5" placeholder="كود المادة">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="name" id="name" class="uk-input edit" rows="5" placeholder="أسم المادة">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="units" id="units" class="uk-input edit" rows="5" placeholder="عدد الوحدات المادة">
+                        </div>
+
+                        <div class="uk-margin">
+                                <input name="prereq" id="prereq" class="uk-input edit" rows="5" placeholder="المتطلبات المادة">
+                        </div>
+                    </div>
+                    <button class="uk-button uk-button-primary uk-width-1-1" id="editSubjectButton">تعديل المادة</button>
+                </fieldset>
+            </li>
+        </ul>
+
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script src="../static/js/books.js"></script>
 {% endblock %}
