@@ -1,26 +1,38 @@
 (function(){
-    var PostBtn = document.getElementById('addPost');
-    var PostSelector = document.getElementsByName('opt');
-    var titleInput = document.getElementById('title');
-    var authorInput = document.getElementById('author');
-    var ImageInput = document.getElementById('url_image');
+    let PostBtn = document.getElementById('addPost');
+    let PostSelector = document.getElementsByName('opt');
+    let titleInput = document.getElementById('title');
+    let authorInput = document.getElementById('author');
+    let ImageInput = document.getElementById('url_image');
 
     // global variable for editing selector
-    var idPost = null;
+    let idPost = null;
     tinymce.init({
         selector:'textarea#trump'
         });
+
     PostBtn.addEventListener('click', () => {
         if((PostSelector[0].checked === true) && (titleInput.value !== "") && (authorInput.value !== "")){
-            var data = {"name_post":titleInput.value,
+            let data = {"title_post":titleInput.value,
             "author_post":authorInput.value,
             "image_post":ImageInput.value,
             "content_post":tinyMCE.activeEditor.getContent()};
 
-            makeRequest('posts/add_post', JSON.stringify(data));
+            makeRequest('blog/add_post', JSON.stringify(data), () => {
+                if(httpRequest.readyState === XMLHttpRequest.DONE){
+                    if(httpRequest.status === 200){
+                        let responedJSON = JSON.parse(httpRequest.responseText);
+                        if(responedJSON.status === true){
+                            alert(responedJSON.messages)
+                        }else{
+                            alert(responedJSON.messages)
+                        }
+                    }
+                }
+            });
 
         }else if((PostSelector[1].checked === true) && (titleInput.value !== "") && (authorInput.value !== "")){
-            var data = {"id_post":idPost,
+            let data = {"id_post":idPost,
             "name_post":titleInput.value,
             "author_post":authorInput.value,
             "image_post":ImageInput.value,

@@ -73,7 +73,6 @@ class ManagerController:
             return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
 
     def edit_subject(self, json_data):
-        print(json_data)
         subject = Subjects.query.get(json_data['id'])
         subject.code_subject = json_data['code_subject']
         subject.name_subject = json_data['name_subject']
@@ -97,11 +96,18 @@ class ManagerController:
     def edit_book(self):
         pass
 
-    def get_post(self):
+    def get_posts(self):
         pass
 
     def add_post(self, json_data):
-        pass
+        post = Posts(author_post=json_data['author_post'], title_post=json_data['title_post'],
+                     content_post=json_data['content_post'], image_post=json_data['image_post']);
+        db.session.add(post)
+        try:
+            db.session.commit()
+            return json.dumps({'status': True, 'messages': 'تم إضافة المادة بنجاح'})
+        except Exception as ex:
+            return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
 
     def delete_post(self, json_data):
         pass

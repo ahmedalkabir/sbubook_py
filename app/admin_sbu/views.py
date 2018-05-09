@@ -108,10 +108,17 @@ def books(requests=None):
         return render_template('admin/books.html', departs=manager.get_departments())
 
 
-@admin.route('/blogs')
+@admin.route('/blog')
+@admin.route('/blog/<requests>', methods=['GET', 'POST'])
 # @login_required
-def blogs():
-    return render_template('admin/blogs.html')
+def blogs(requests=None):
+    if requests is not None and requests in ('get_posts', 'add_post', 'edit_post', 'delete_post'):
+        if requests == 'get_posts':
+            return manager.get_posts()
+        if requests == 'add_post':
+            return manager.add_post(request.get_json())
+    elif requests is None:
+        return render_template('admin/blogs.html')
 
 
 @login_manager.user_loader
