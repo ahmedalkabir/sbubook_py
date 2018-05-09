@@ -1,6 +1,6 @@
 import json
 from flask import jsonify
-from ..models import Departments, Subjects, Books
+from ..models import Departments, Subjects, Books, Posts
 from .. import db
 
 
@@ -84,3 +84,27 @@ class ManagerController:
             return json.dumps({'status': True, 'messages': 'تم التعديل بنجاح'})
         except Exception as ex:
             return json.dumps({'status': False, 'messages': '{} المعذرة يوجد خطأ في التنفيذ'.format(ex)})
+
+    def get_books(self, books_of_subject ,bjson: bool = False):
+        pass
+
+    def add_book(self):
+        pass
+
+    def delete_book(self):
+        pass
+
+    def edit_book(self):
+        pass
+
+    def get_post(self):
+        pass
+
+    def add_post(self, json_data):
+        pass
+
+    def delete_post(self, json_data):
+        pass
+
+    def edit_post(self, json_data):
+        pass

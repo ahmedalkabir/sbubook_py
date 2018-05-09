@@ -63,6 +63,18 @@ class Books(db.Model):
         return '<Books {}>'.format(self.name_book)
 
 
+class Posts(db.Model):
+    __tablename__ = 'Posts'
+    id = db.Column(db.Integer, primary_key=True)
+    author_post = db.Column(db.String(64))
+    title_post = db.Column(db.String(64))
+    content_post = db.Column(db.TEXT)
+    image_post = db.Column(db.String(64))
+
+    def __repr__(self):
+        return '<Posts {}>'.format(self.title_post)
+
+
 class User(UserMixin, db.Model):
     __tablename__ = 'Users'
     id = db.Column(db.Integer, primary_key=True)

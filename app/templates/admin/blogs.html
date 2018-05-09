@@ -1,14 +1,41 @@
 {% extends "admin/base.html" %}
 
 {% block container %}
-<div class="uk-container uk-container-expand list-book">
-    <div class="uk-section uk-section-secondary uk-light">
-        <div class="uk-container sbu-paddign">
-            <a href="{{ url_for('admin.departments') }}"><button id="btn_departments" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة الأقسام</button></a>
-            <button id="btn_subjects" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة المواد</button>
-            <button id="btn_books" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-bottom">إدارة الكتب</button>
-            <button id="btn_blogs" class="uk-button uk-button-secondary uk-width-1-1">إدارة المدونة</button>
+    <div class="uk-section uk-section-secondary">
+                <div class="uk-container uk-container-expand">
+                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                        <label><input class="uk-radio uk-margin-left" type="radio" name="opt" checked> إضافة المقالة</label>
+                        <label><input class="uk-radio uk-margin-left" type="radio" name="opt">تعديل المقالة</label>
+                    </div>
+                    <form class="uk-grid-small" uk-grid>
+                        <div class="uk-width-1-2@s">
+                            <label class="uk-form-label" for="form-stacked-text">عنوان المقالة</label>
+                            <input class="uk-input" type="text" id="title" placeholder="عنوان المقال">
+                        </div>
+                        <div class="uk-width-1-2@s">
+                            <label class="uk-form-label" for="form-stacked-text">الكاتب</label>
+                            <input class="uk-input" type="text" id="author" placeholder="الكاتب">
+                        </div>
+                        <input class="uk-input uk-width-1-2" id="url_image" type="text" placeholder="ضع رابط هنا أو أضف صورة منك">
+                        <div class="uk-margin-right" uk-form-custom>
+                            <input type="file">
+                            <button class="uk-button uk-button-default" type="button" tabindex="-1">أختار صورة معينة</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    <div>
+        <textarea dir="ltr" id="trump" ></textarea>
+    </div>
+    <div class="uk-section uk-section-secondary">
+        <div class="uk-container uk-container-expand">
+            <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-top uk-margin-bottom" id="addPost">أضف المقالة</button>
         </div>
     </div>
-</div>
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script src="../static/js/tinymce.min.js"></script>
+    <script src="../static/js/blogs.js"></script>
 {% endblock %}

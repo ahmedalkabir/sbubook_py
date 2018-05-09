@@ -2,14 +2,15 @@ from flask import render_template, redirect, url_for, abort, flash, request, \
     current_app, make_response
 from . import main
 from .. import db
-from ..models import Departments, Subjects, Books
+from ..models import Departments, Subjects, Books, Posts
 
 
 # show the main page
 @main.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('main.html', departs=get_department_lists(),
-                           last_books=list_of_books())
+                           last_books=get_list_of_books(),
+                           last_posts=get_list_of_posts())
 
 
 @main.route('/department/')
@@ -30,7 +31,7 @@ def view_books_of_subject(sub=None):
 
 
 # to show news feed
-@main.route('/blogs')
+@main.route('/blog')
 def blogs():
     return 'Blogger'
 
@@ -52,5 +53,10 @@ def get_books_lists_by_subject(subject=None):
 
 
 # get list of books by specific number of books
-def list_of_books(limit=3):
+def get_list_of_books(limit=3):
     return Books.query.limit(limit).all()
+
+
+# to get list of posts at main page
+def get_list_of_posts(limit=4):
+    return Posts.query.limit(limit).all()

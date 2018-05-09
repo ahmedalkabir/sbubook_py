@@ -26,7 +26,20 @@
                         {% endfor %}
                     </div>
 
-                    <div id="addList">
+                    <legend class="uk-legend uk-margin-top">تحديد المادة المناسبة للكتاب</legend>
+                    <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
+
+                        <select id="subjectSelector">
+                            <option value="0">أختار</option>
+                        </select>
+
+                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                            <span></span>
+                            <span uk-icon="icon: chevron-down"></span>
+                        </button>
+                    </div>
+
+                    <div id="addList" class="uk-margin-top">
                         <div class="uk-margin">
                             <input name="code" id="code" class="uk-input" rows="5" placeholder="أسم الكتاب">
                         </div>
