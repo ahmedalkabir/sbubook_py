@@ -2,152 +2,181 @@
 
 {% block container %}
 <div class="uk-section uk-section-secondary">
-    <div class="uk-container">
-        <ul uk-tab>
-            <li class="uk-active"><a href="#">اضف الكتاب</a></li>
-            <li><a href="#">حذف الكتاب</a></li>
-            <li><a href="#">تعديل الكتاب</a></li>
-        </ul>
+        <div class="uk-container">
+            <ul uk-tab>
+                <li class="uk-active"><a href="#">أضف كتاب</a></li>
+                <li><a href="#">حذف كتاب</a></li>
+                <li><a href="#">تعديل الكتب</a></li>
+            </ul>
 
 
-        <ul class="uk-switcher uk-margin">
-            <li>
-                <fieldset class="uk-fieldset">
-
-                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
-                        <a class="uk-alert-close" uk-close></a>
-                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
-                    </div>
-
-                    <legend class="uk-legend">تحديد القسم والمادة لإضافة الكتاب المرتبط بيه</legend>
-                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                        {% for depart in departs %}
-                            <label><input class="uk-radio uk-margin-left" type="radio" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
-                        {% endfor %}
-                    </div>
-
-                    <legend class="uk-legend uk-margin-top">تحديد المادة المناسبة للكتاب</legend>
-                    <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
-
-                        <select id="subjectSelector">
-                            <option value="0">أختار</option>
-                        </select>
-
-                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
-                            <span></span>
-                            <span uk-icon="icon: chevron-down"></span>
-                        </button>
-                    </div>
-
-                    <div id="addList" class="uk-margin-top">
-                        <div class="uk-margin">
-                            <input name="code" id="code" class="uk-input" rows="5" placeholder="أسم الكتاب">
+            <ul class="uk-switcher uk-margin">
+                <li>
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">تحديد القسم والمادة لإضافة الكتب والمراجع</legend>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            {% for depart in departs %}
+                                <label><input class="uk-radio uk-margin-left" type="radio" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                            {% endfor %}
                         </div>
 
                         <div class="uk-margin">
-                                <input name="name" id="name" class="uk-input" rows="5" placeholder="نوع الكتاب">
+                            <label class="uk-form-label uk-margin-left" for="form-horizontal-text">أختار المادة لإضافة المراجع</label>
+                            <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
+
+                                <select class="ADDactivitySelector">
+                                    <option value="0">أختار</option>
+                                </select>
+
+                                <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                    <span></span>
+                                    <span uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <form class="uk-grid-small uk-margin-top" uk-grid>
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">أسم الكتاب</label>
+                                <input class="uk-input uk-margin-top book_input" type="text" placeholder="أسم الكتاب" disabled>
+                            </div>
+
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">نوع الكتاب</label>
+                                <input class="uk-input uk-margin-top book_input" type="text" placeholder="نوع الكتاب" disabled>
+                            </div>
+
+
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">حجم الكتاب</label>
+                                <input class="uk-input uk-margin-top book_input" type="text" placeholder="حجم الكتاب" disabled>
+                            </div>
+
+
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">رابط التحميل</label>
+                                <input class="uk-input uk-margin-top book_input" type="text" placeholder="رابط التحميل" disabled>
+                            </div>
+                        </form>
+
+                        <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-top" id="addBook">إضف الكتاب</button>
+
+                    </fieldset>
+                </li>
+
+
+                <li>
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">تحديد القسم والمادة</legend>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            {% for depart in departs %}
+                                <label><input class="uk-radio uk-margin-left" type="radio" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                            {% endfor %}
                         </div>
 
                         <div class="uk-margin">
-                                <input name="units" id="units" class="uk-input" rows="5" placeholder="حجم الكتاب">
+                            <label class="uk-form-label uk-margin-left" for="form-horizontal-text">أختار المادة المناسبة</label>
+                            <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
+
+                                <select class="DELETEactivitySelector">
+                                    <option value="0">أختار</option>
+                                </select>
+
+                                <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                    <span></span>
+                                    <span uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
+
+                        <div class="uk-section">
+                            <div id="DeleteTable" class="uk-container">
+                                <table class="uk-table uk-table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>رقم الكتاب</th>
+                                            <th>أسم الكتاب</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
+
+
+                    </fieldset>
+                </li>
+
+                <li>
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">تحديد القسم والمادة</legend>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            {% for depart in departs %}
+                                <label><input class="uk-radio uk-margin-left" type="radio" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
+                            {% endfor %}
+                        </div>
                         <div class="uk-margin">
-                                <input name="prereq" id="prereq" class="uk-input" rows="5" placeholder="رابط التحميل">
-                        </div>
-                    </div>
-                    <button class="uk-button uk-button-primary uk-width-1-1" id="addSubject">إضف الكتاب</button>
-                </fieldset>
-            </li>
+                            <label class="uk-form-label uk-margin-left" for="form-horizontal-text">أختار المادة المناسبة</label>
+                            <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
 
+                                <select class="EDITactivitySelector">
+                                    <option value="0">أختار</option>
+                                </select>
 
-            <li>
-                <fieldset class="uk-fieldset">
+                                <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                    <span></span>
+                                    <span uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
 
-                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
-                        <a class="uk-alert-close" uk-close></a>
-                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
-                    </div>
+                            <label class="uk-form-label uk-margin-left uk-margin-right" for="form-horizontal-text">اختار المرجع المناسب للتعديل</label>
+                            <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
 
-                    <legend class="uk-legend">تحديد القسم المناسب</legend>
-                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                        {% for depart in departs %}
-                            <label><input class="uk-radio uk-margin-left" type="radio"  id="deleteSubject" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
-                        {% endfor %}
-                    </div>
+                                <select class="bookSelector">
+                                    <option value="0">أختار</option>
+                                </select>
 
-                    <legend class="uk-legend uk-margin-top">تحديد المواد للحذف</legend>
-
-                    <div class="uk-section">
-                        <div id="DeleteTable" class="uk-container">
-                            <table class="uk-table uk-table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>كود المادة</th>
-                                        <th>أسم المادة</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </fieldset>
-            </li>
-
-            <li>
-                <fieldset class="uk-fieldset">
-
-                    <div style="display:none" class="uk-alert-danger uk-margin-top uk-margin-bottom" uk-alert id="alert">
-                        <a class="uk-alert-close" uk-close></a>
-                        <p class="uk-margin-right">الرجاء التعبئة الحقول الثلاثة الأولة وتحديد القسم المناسب لإضافة المادة</p>
-                    </div>
-
-                    <legend class="uk-legend">تحديد القسم المناسب</legend>
-                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                        {% for depart in departs %}
-                            <label><input class="uk-radio uk-margin-left" type="radio"  id="editSubject" name="department" value={{depart.code_department}}>{{depart.name_department}}</label>
-                        {% endfor %}
-                    </div>
-
-                    <legend class="uk-legend uk-margin-top">تحديد المادة للتعديل</legend>
-                    <div class="uk-margin-right" uk-form-custom="target: > * > span:first">
-
-                        <select id="subjectSelector">
-                            <option value="0">أختار</option>
-                        </select>
-
-                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
-                            <span></span>
-                            <span uk-icon="icon: chevron-down"></span>
-                        </button>
-                    </div>
-
-                    <div class="uk-margin-top" id="editList">
-                        <div class="uk-margin">
-                            <input name="code" id="code" class="uk-input edit" rows="5" placeholder="كود المادة">
+                                <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                    <span></span>
+                                    <span uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="uk-margin">
-                                <input name="name" id="name" class="uk-input edit" rows="5" placeholder="أسم المادة">
-                        </div>
+                        <form class="uk-grid-small uk-margin-top" uk-grid>
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">أسم الكتاب</label>
+                                <input class="uk-input uk-margin-top edit_book" type="text" placeholder="أسم الكتاب" >
+                            </div>
 
-                        <div class="uk-margin">
-                                <input name="units" id="units" class="uk-input edit" rows="5" placeholder="عدد الوحدات المادة">
-                        </div>
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">نوع الكتاب</label>
+                                <input class="uk-input uk-margin-top edit_book" type="text" placeholder="نوع الكتاب" >
+                            </div>
 
-                        <div class="uk-margin">
-                                <input name="prereq" id="prereq" class="uk-input edit" rows="5" placeholder="المتطلبات المادة">
-                        </div>
-                    </div>
-                    <button class="uk-button uk-button-primary uk-width-1-1" id="editSubjectButton">تعديل المادة</button>
-                </fieldset>
-            </li>
-        </ul>
 
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">حجم الكتاب</label>
+                                <input class="uk-input uk-margin-top edit_book" type="text" placeholder="حجم الكتاب" >
+                            </div>
+
+
+                            <div class = "uk-width-1-2@s">
+                                <label class="uk-form-label uk-margin-bottom" for="form-horizontal-text">رابط التحميل</label>
+                                <input class="uk-input uk-margin-top edit_book" type="text" placeholder="رابط التحميل">
+                            </div>
+                        </form>
+
+                        <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-top" id="editBook">تعديل الكتاب</button>
+                    </fieldset>
+                </li>
+
+            </ul>
+
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block js %}

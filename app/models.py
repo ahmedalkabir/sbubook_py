@@ -62,6 +62,17 @@ class Books(db.Model):
     def __repr__(self):
         return '<Books {}>'.format(self.name_book)
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'code_subject': self.code_subject,
+            'name_book': self.name_book,
+            'type_of_book': self.type_of_book,
+            'size_of_book': self.size_of_book,
+            'url_of_book': self.url_of_book
+        }
+
 
 class Posts(db.Model):
     __tablename__ = 'Posts'
@@ -73,6 +84,16 @@ class Posts(db.Model):
 
     def __repr__(self):
         return '<Posts {}>'.format(self.title_post)
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'author_post': self.author_post,
+            'title_post': self.title_post,
+            'content_post': self.content_post,
+            'image_post': self.image_post
+        }
 
 
 class User(UserMixin, db.Model):

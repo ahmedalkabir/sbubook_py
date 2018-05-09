@@ -97,13 +97,13 @@ def subjects(requests=None):
 def books(requests=None):
     if requests is not None and requests in ('get_books', 'add_book', 'edit_book', 'delete_book'):
         if requests == 'get_books':
-            return manager.get_subjects(request.get_json()['code_subject'], bjson=True)
+            return manager.get_books(request.get_json()['code_subject'], bjson=True)
         elif requests == 'add_book':
-            return manager.add_subject(request.get_json())
+            return manager.add_book(request.get_json())
         elif requests == 'delete_book':
-            return manager.delete_subject(request.get_json())
+            return manager.delete_book(request.get_json())
         elif requests == 'edit_book':
-            return manager.edit_subject(request.get_json())
+            return manager.edit_book(request.get_json())
     elif requests is None:
         return render_template('admin/books.html', departs=manager.get_departments())
 
@@ -112,11 +112,17 @@ def books(requests=None):
 @admin.route('/blog/<requests>', methods=['GET', 'POST'])
 # @login_required
 def blogs(requests=None):
-    if requests is not None and requests in ('get_posts', 'add_post', 'edit_post', 'delete_post'):
+    if requests is not None and requests in ('get_posts', 'add_post', 'edit_post', 'delete_post', 'get_post'):
         if requests == 'get_posts':
-            return manager.get_posts()
-        if requests == 'add_post':
+            return manager.get_posts(bjson=True)
+        if requests == 'get_post':
+            return manager.get_post_by_id(request.get_json()['id_post'])
+        elif requests == 'add_post':
             return manager.add_post(request.get_json())
+        elif requests == 'delete_post':
+            return manager.delete_post(request.get_json())
+        elif requests == 'edit_post':
+            return manager.edit_post(request.get_json())
     elif requests is None:
         return render_template('admin/blogs.html')
 

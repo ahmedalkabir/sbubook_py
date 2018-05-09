@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="../static/css/post.css">
+{% endblock %}
+
+{% block purpose_of_project%}
+{% endblock %}
+
+{% block container %}
+
+    <div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top"
+         style="background-image: url('{{ post.image_post }}')" >
+    </div>
+ <div class="uk-section uk-section-secondary uk-preserve-color">
+            <div class="uk-container uk-container-large blog">
+                <div class="uk-card uk-card-default uk-padding uk-card-body card-ak">
+                    <div class="header-meta-data uk-margin-top">
+                        <h1 class="uk-heading-primary">{{ post.title_post }}</h1>
+                        <ul class="uk-breadcrumb">
+                            <li><a href="#">الرئيسية</a></li>
+                            <li><a href="#">المدونة</a></li>
+                        </ul>
+
+                        <div class="author-img">
+                            <img alt src="" height="64" width="64">
+                        </div>
+
+                        <div class="author-info">
+                            <a href="#" rel="author">{{ post.author_post }}</a>
+                        </div>
+
+                    </div>
+
+                    <div class="uk-section article-section">
+                            <div class="uk-container">
+                                <span class="uk-text-lead">
+                                    {{ post.content_post|safe }}
+                                </span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

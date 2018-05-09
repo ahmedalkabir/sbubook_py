@@ -81,6 +81,7 @@ a.blog-item > h1{
 .entry-details{
     color:black;
     font-size: 1.2em;
+    word-wrap: break-word;
 }
 
 .author{

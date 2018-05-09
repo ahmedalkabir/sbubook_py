@@ -85,11 +85,11 @@
 
     //for departmentSelctor
     departmentSelector[0].addEventListener('change', () => {
-        var edit = document.getElementsByClassName('uk-input edit');
+        let edit = document.getElementsByClassName('uk-input edit');
         makeRequest('departments/get_departments','',() => {
             if(httpRequest.readyState === XMLHttpRequest.DONE){
                 if(httpRequest.status === 200){
-                    var encoded_json_data = JSON.parse(httpRequest.responseText);
+                    let encoded_json_data = JSON.parse(httpRequest.responseText);
                     for(let i = 0;i < encoded_json_data.length; i++){
                         if(encoded_json_data[i].id == departmentSelector[0].value){
                             edit[0].value = encoded_json_data[i].code_department;

@@ -34,7 +34,11 @@ def view_books_of_subject(sub=None):
 @main.route('/blog/')
 @main.route('/blog/<id>')
 def blogs(id=None):
-    return 'Blogger'
+    if id and get_post_by_id(id) is not None:
+        return render_template('post.html', departs=get_department_lists(),
+                               post=get_post_by_id(id))
+    else:
+        return 'Not Found'
 
 
 # to get department list from database
@@ -60,4 +64,11 @@ def get_list_of_books(limit=3):
 
 # to get list of posts at main page
 def get_list_of_posts(limit=4):
-    return Posts.query.limit(limit).all()
+    return Posts.query.order_by(Posts.id.desc()).limit(limit).all()
+
+
+# to get desired post to show it
+def get_post_by_id(id=None):
+    if id is not None:
+        return Posts.query.filter_by(id=id).first()
+
