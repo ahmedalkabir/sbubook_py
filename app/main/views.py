@@ -31,8 +31,9 @@ def view_books_of_subject(sub=None):
 
 
 # to show news feed
-@main.route('/blog')
-def blogs():
+@main.route('/blog/')
+@main.route('/blog/<id>')
+def blogs(id=None):
     return 'Blogger'
 
 

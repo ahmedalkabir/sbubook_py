@@ -16,58 +16,73 @@
 
 {% block last_articles %}
 <div class="list-articles">
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details ">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
+    {% for last_post in last_posts %}
+        <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
+            <article class="article-item">
+                <a href="/blog/{{ last_post.id }}" class="blog-item">
+                    <div class="uk-first-column">
+                        <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="{{ last_post.image_post }}" width="350" alt="">
+                        <h1 class="title-blog">{{ last_post.title_post }}</h1>
+                        <p class="entry-details ">{{ strip_tags(last_post.content_post) }}</p>
+                        <a href=""><p class="author">الكاتب : {{ last_post.author_post }}</p></a>
+                    </div>
+                </a>
+            </article>
+        </div>
+    {% endfor %}
 
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
-
-
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
-
-    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
-        <article class="article-item">
-            <a href="" class="blog-item">
-                <div class="uk-first-column">
-                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">
-                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>
-                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>
-                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>
-                </div>
-            </a>
-        </article>
-    </div>
+{#    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">#}
+{#        <article class="article-item">#}
+{#            <a href="" class="blog-item">#}
+{#                <div class="uk-first-column">#}
+{#                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">#}
+{#                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>#}
+{#                    <p class="entry-details ">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>#}
+{#                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>#}
+{#                </div>#}
+{#            </a>#}
+{#        </article>#}
+{#    </div>#}
+{##}
+{#    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">#}
+{#        <article class="article-item">#}
+{#            <a href="" class="blog-item">#}
+{#                <div class="uk-first-column">#}
+{#                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">#}
+{#                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>#}
+{#                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>#}
+{#                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>#}
+{#                </div>#}
+{#            </a>#}
+{#        </article>#}
+{#    </div>#}
+{##}
+{##}
+{#    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">#}
+{#        <article class="article-item">#}
+{#            <a href="" class="blog-item">#}
+{#                <div class="uk-first-column">#}
+{#                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">#}
+{#                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>#}
+{#                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>#}
+{#                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>#}
+{#                </div>#}
+{#            </a>#}
+{#        </article>#}
+{#    </div>#}
+{##}
+{#    <div class="uk-grid-medium uk-child-width-expand@s uk-grid">#}
+{#        <article class="article-item">#}
+{#            <a href="" class="blog-item">#}
+{#                <div class="uk-first-column">#}
+{#                    <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent" src="http://via.placeholder.com/550x350" width="350" alt="">#}
+{#                    <h1 class="title-blog">شخصيات عظيمة تثبت أهمية التعلم... ابدا لم يفت الآوان عن التعليم</h1>#}
+{#                    <p class="entry-details uk-text-meta">قد يظن البعض منا أنّ تحقيق النجاح وتتبع الأحلام رهين بسن دون آخر</p>#}
+{#                    <a href=""><p class="author">الكاتب : أحمد الكبير</p></a>#}
+{#                </div>#}
+{#            </a>#}
+{#        </article>#}
+{#    </div>#}
 
     <div class="uk-grid-medium uk-child-width-expand@s uk-grid">
         <ul class="uk-pagination uk-flex-center" uk-margin>
