@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, \
     current_user
 from . import admin
 from .. import db, login_manager
+from ..user import UserLogin
 from ..models import User
 from .forms import LoginForm
 from .controller import ManagerController
@@ -21,16 +22,10 @@ def refer_to_login():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        # user = User.query.filter_by(email=form.email.data).first()
-        # if user is not None and user.verify_password(form.password.data):
-        #     login_user(user, form.remember_me.data)
-        #     next = request.args.get('next')
-        #     if next is None or not next.startswith('/'):
-        #         next = url_for('admin.dashboard')
-        #     return redirect(next)
-        # Mocking just for Development 
-        if form.email.data == 'sbu@sbubook.com' and form.password.data == 'sbu123':
-            login_user(form.email.data, form.remember_me.data)
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is not None and user.verify_password(form.password.data):
+            user = UserLogin(form.email.data)
+            login_user(user)
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
                 next = url_for('admin.dashboard')
@@ -40,7 +35,7 @@ def login():
 
 
 @admin.route('/dashboard')
-# @login_required
+@login_required
 def dashboard():
     return render_template('admin/dashboard.html')
 
@@ -53,7 +48,7 @@ def dashboard():
 
 @admin.route('/departments')
 @admin.route('/departments/<requests>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def departments(requests=None):
     """
     it simply we received the json data based on request
@@ -76,7 +71,7 @@ def departments(requests=None):
 
 @admin.route('/subjects')
 @admin.route('/subjects/<requests>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def subjects(requests=None):
     if requests is not None and requests in ('get_subjects', 'add_subject', 'edit_subject', 'delete_subject'):
         if requests == 'get_subjects':
@@ -93,7 +88,7 @@ def subjects(requests=None):
 
 @admin.route('/books')
 @admin.route('/books/<requests>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def books(requests=None):
     if requests is not None and requests in ('get_books', 'add_book', 'edit_book', 'delete_book'):
         if requests == 'get_books':
@@ -110,7 +105,7 @@ def books(requests=None):
 
 @admin.route('/blog')
 @admin.route('/blog/<requests>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def blogs(requests=None):
     if requests is not None and requests in ('get_posts', 'add_post', 'edit_post', 'delete_post', 'get_post'):
         if requests == 'get_posts':
@@ -127,7 +122,14 @@ def blogs(requests=None):
         return render_template('admin/blogs.html')
 
 
+@admin.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
+
 @login_manager.user_loader
 def load_user(user_id):
-    return None
+    user_pass = User.query.filter_by(email=user_id).first()
+    if user_pass is not None:
+        return UserLogin(user_id)
 

@@ -96,7 +96,7 @@ class Posts(db.Model):
         }
 
 
-class User(UserMixin, db.Model):
+class User(db.Model):
     __tablename__ = 'Users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
