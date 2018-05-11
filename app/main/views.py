@@ -9,7 +9,7 @@ from ..models import Departments, Subjects, Books, Posts
 @main.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('main.html', departs=get_department_lists(),
-                           last_books=get_list_of_books(),
+                           last_books=get_list_of_books(6),
                            last_posts=get_list_of_posts())
 
 
