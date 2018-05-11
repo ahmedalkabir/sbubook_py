@@ -92,7 +92,7 @@ class ManagerController:
             Books.query.filter_by(code_subject=books_of_subject).order_by(Books.id).all()
 
     def add_book(self, json_data):
-        book = Books(id=json_data['id'], code_subject=json_data['code_subject'],
+        book = Books(code_subject=json_data['code_subject'],
                      name_book=json_data['name_book'], type_of_book=json_data['type_of_book'],
                      size_of_book=json_data['size_of_book'], url_of_book=json_data['url_of_book'])
         db.session.add(book)
